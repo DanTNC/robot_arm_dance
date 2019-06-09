@@ -1,0 +1,28 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script> -->
+</head>
+<body>
+    <div>
+        <p id="states"></p>
+        <!-- shows actors' states -->
+        <p id="actions"></p>
+        <!-- shows actions obtained from requests, labeded with choreography if belongs to one -->
+        <p id="choreography"></p>
+        <!-- show choreography obtained from requests -->
+    </div>
+    <div>
+        <button id="refresh">Refresh Now!!</button>
+        <button id="led">LED TOGGLE</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+$(function(){
+    var socket = io();
+    socket.on('connect', function() {
+        socket.emit('connected', {data: 'I\'m connected!'});
+    });
+
+    var refresh = () => {
+      $.ajax({
+        url: "/probe/states",
+        success: (res) => {
+            console.log(res);
+            $("#states").text(JSON.stringify(res));
+        }
+      });
+      $.ajax({
+        url: "/probe/actions",
+        success: (res) => {
+            console.log(res);
+            $("#actions").text(res);
+        }
+      })
+      $.ajax({
+        url: "/probe/choreography",
+        success: (res) => {
+            console.log(res);
+            $("#choreography").text(res);
+        }
+      })
+    };
+
+    socket.on('refresh', function() {
+        refresh();
+    });
+
+    $("#refresh").click(() => {
+        refresh();
+    });
+
+    $("#led").click(() => {
+        $.ajax({
+            url: "/action/led/toggle",
+            success: (res) => {
+                console.log(res);
+            }
+        });
+    });
+});
