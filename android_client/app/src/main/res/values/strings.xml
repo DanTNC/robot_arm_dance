@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Gaoranger</string>
+    <string name="toggle">Toggle</string>
+    <string name="hw">Hello World!</string>
+</resources>
