@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -17,7 +20,7 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity {
 
     //設定HTTP Get & Post要連線的Url
-    private String getUrl = "http://192.168.1.147/arduino/";
+    private String getUrl = "http://192.168.1.147/arduino/action/led/";
 
     private Button getBtn;
     private TextView mTextViewResult;
@@ -60,14 +63,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if(response.isSuccessful()){
-//                    final String res = response.body().string();
+                    final String res = response.body().string();
 //
-//                    MainActivity.this.runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            mTextViewResult.setText(res);
-//                        }
-//                    });
+                    MainActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            JSONObject result = null;
+                            try {
+                                result = new JSONObject(res);
+                                mTextViewResult.setText(result.getString("result"));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
                 }
             }
         });
