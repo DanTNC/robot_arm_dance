@@ -2,6 +2,7 @@ from flask import Flask, render_template, jsonify
 from flask_socketio import SocketIO, emit
 from config import DevConfig
 from gaoranger import RAD
+import os
 
 rad = RAD()
 
@@ -30,4 +31,8 @@ def handle_my_custom_event(json):
     print('received json: ' + str(json))
 
 if __name__ == '__main__':
-    socketio.run(app, port=8080)
+    try:
+        port = os.environ['port']
+    except:
+        port = 8080
+    socketio.run(app, port=port)
