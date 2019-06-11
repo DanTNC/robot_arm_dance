@@ -14,9 +14,9 @@ socketio = SocketIO(app)
 def index():
     return render_template('index.html')
 
-@app.route('/action/<action>/<params>', methods=["GET"])
-def do_action(action, params):
-    if rad.action(action, params):
+@app.route('/action/<action>/<param>', methods=["GET"])
+def do_action(action, param):
+    if rad.action(action, param):
         emit("refresh", namespace="/", broadcast=True)
         return jsonify({"result": "ok"})
     else:

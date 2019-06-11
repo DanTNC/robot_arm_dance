@@ -1,5 +1,5 @@
 $(function(){
-    var socket = io();
+    var socket = io('http://' + document.domain + ':' + location.port);
     socket.on('connect', function() {
         socket.emit('connected', {data: 'I\'m connected!'});
     });
@@ -27,6 +27,8 @@ $(function(){
         }
       })
     };
+    
+    refresh();
 
     socket.on('refresh', function() {
         refresh();
@@ -34,14 +36,5 @@ $(function(){
 
     $("#refresh").click(() => {
         refresh();
-    });
-
-    $("#led").click(() => {
-        $.ajax({
-            url: "/action/led/toggle",
-            success: (res) => {
-                console.log(res);
-            }
-        });
     });
 });
