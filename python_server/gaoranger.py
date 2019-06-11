@@ -33,5 +33,8 @@ class RAD():
         arg = args[0]
         if arg == "toggle":
             self.states["led"] = not self.states["led"]
-            print(self.states["led"])
+        if arg == "on":
+            self.states["led"] = True
+        if arg == "off":
+            self.states["led"] = False
         return True

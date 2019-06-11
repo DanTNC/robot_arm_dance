@@ -1,0 +1,16 @@
+{
+  "name": "Python Server of Gaoranger",
+  "description": "Android course final project.",
+  "repository": "https://github.com/heroku/python-getting-started",
+  "keywords": ["python"],
+  "addons": [ "heroku-postgresql" ],
+  "env": {
+  },
+  "environments": {
+    "dev": {
+      "scripts": {
+          "run": "python python_server/server.py"
+      }
+    }
+  }
+}

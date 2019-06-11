@@ -124,14 +124,23 @@ void process(YunClient client) {
       }
       if(action == "led"){
         if(query == "on"){
-          digitalWrite(LEDPIN,HIGH);
+          digitalWrite(LEDPIN, HIGH);
           client.print("{\"result\":\"ok\"}");
           return;
         }
         if(query == "off"){
-          digitalWrite(LEDPIN,LOW);
+          digitalWrite(LEDPIN, LOW);
           client.print("{\"result\":\"ok\"}");
           return;
+        }
+        if(query == "toggle"){
+          int led_mode = digitalRead(LEDPIN);
+          if(led_mode == HIGH){
+            digitalWrite(LEDPIN, LOW);
+          }else{
+            digitalWrite(LEDPIN, HIGH);
+          }
+          client.print("{\"result\":\"ok\"}");
         }
         client.print("{\"result\":\"error\",\"message\":\"illegal paramter for led\"}");
         return;
