@@ -32,7 +32,7 @@ def handle_my_custom_event(json):
 
 if __name__ == '__main__':
     try:
-        port = os.environ['port']
+        port = os.environ['PORT']
     except:
         port = 8080
     socketio.run(app, port=port)
