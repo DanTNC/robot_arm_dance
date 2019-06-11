@@ -1,1 +1,1 @@
-web: cd python_server && gunicorn server:app
+web: cd python_server && gunicorn --worker-class socketio.sgunicorn.GeventSocketIOWorker --log-file=- server:app
