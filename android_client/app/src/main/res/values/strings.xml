@@ -15,4 +15,6 @@
     <string name="_0">0</string>
     <string name="states">states</string>
     <string name="result">result</string>
+    <string name="reset">reset</string>
+    <string name="NotFound">not found</string>
 </resources>
