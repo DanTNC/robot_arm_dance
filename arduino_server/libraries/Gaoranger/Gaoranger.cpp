@@ -29,6 +29,10 @@ void STATES::outjson(YunClient client){
 }
 
 RAD::RAD(void){
+	reset();
+}
+
+void RAD::reset(void){
 	states = *(new STATES(0, 40, 180, 0, 170, 73));
 }
 

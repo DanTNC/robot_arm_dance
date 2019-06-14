@@ -71,8 +71,7 @@ void process(YunClient client) {
     if(check == "$$"){
       String part = query;
       if(part == "states"){
-        STATES states = rad.probe();
-        states.outjson(client);
+        rad.probe().outjson(client);
       }else{
         client.print("{\"result\":\"error\",\"message\":\"no such part\"}");
       }
@@ -147,6 +146,10 @@ void process(YunClient client) {
         return;
       }
       client.print("{\"result\":\"error\",\"message\":\"no such action\"}");
+    }else if(query == "reset"){
+      Braccio.begin();
+      rad.reset();
+      rad.probe().outjson(client);
     }else{
       client.print("{\"result\":\"error\",\"message\":\"missing action parameters\"}");
     }

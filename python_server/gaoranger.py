@@ -1,14 +1,5 @@
 class RAD():
     def __init__(self):
-        self.states = {
-            "led": False,
-            "base": 0,
-            "shoulder": 40,
-            "elbow": 180,
-            "wrist": 0,
-            "rotate": 170,
-            "gripper": 73
-        }
         self.actions = []
         self.choreography = []
         self.PROBE_SWITCH = {
@@ -24,6 +15,17 @@ class RAD():
             "wrist": self.act_wrist,
             "rotate": self.act_rotate,
             "gripper": self.act_gripper
+        }
+        
+    def init_states(self):
+        self.states = {
+            "led": False,
+            "base": 0,
+            "shoulder": 40,
+            "elbow": 180,
+            "wrist": 0,
+            "rotate": 170,
+            "gripper": 73
         }
 
     def probe(self, part):
@@ -96,3 +98,7 @@ class RAD():
         target = self.limit_crip(10, 73, target)
         self.states["gripper"] = target
         return True
+        
+    def reset(self):
+        self.init_states()
+        return self.states

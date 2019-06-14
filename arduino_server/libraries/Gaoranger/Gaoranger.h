@@ -15,6 +15,7 @@ public:
 	int wrist_rot;
 	int gripper;
 	void outjson(YunClient client);
+	void reset();
 };
 
 class RAD{

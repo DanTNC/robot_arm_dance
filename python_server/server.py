@@ -14,6 +14,11 @@ socketio = SocketIO(app)
 def index():
     return render_template('index.html')
 
+
+@app.route('/action/reset', methods=["GET"])
+def do_reset():
+    return jsonify(rad.reset())
+
 @app.route('/action/<action>/<param>', methods=["GET"])
 def do_action(action, param):
     if rad.action(action, param):
