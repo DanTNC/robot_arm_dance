@@ -1,5 +1,6 @@
 class RAD():
     def __init__(self):
+        self.init_states()
         self.actions = []
         self.choreography = []
         self.PROBE_SWITCH = {
