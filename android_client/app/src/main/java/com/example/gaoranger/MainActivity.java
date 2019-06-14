@@ -2,8 +2,8 @@ package com.example.gaoranger;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -25,74 +25,195 @@ public class MainActivity extends AppCompatActivity {
     private String testUrl = "https://smilegaoranger.herokuapp.com/";
 
     private ToggleButton toggleTest;
-    private Button ledBtn;
-    private Button baseBtn;
-    private EditText baseDelta;
-    private Button shoulderBtn;
-    private EditText shoulderDelta;
-    private Button elbowBtn;
-    private EditText elbowDelta;
-    private Button wristBtn;
-    private EditText wristDelta;
-    private Button rotateBtn;
-    private EditText rotateDelta;
-    private Button gripperBtn;
-    private EditText gripperDelta;
+    private ToggleButton baseBtn;
+    private TextView baseAngle;
+    private ToggleButton shoulderBtn;
+    private TextView shoulderAngle;
+    private ToggleButton elbowBtn;
+    private TextView elbowAngle;
+    private ToggleButton wristBtn;
+    private TextView wristAngle;
+    private ToggleButton rotateBtn;
+    private TextView rotateAngle;
+    private ToggleButton gripperBtn;
+    private TextView gripperAngle;
+    private EditText stepSize;
+    private int selectedMotor = 0;
     private TextView mTextViewResult;
-    private TextView mTextStates;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);;
 
-        toggleTest = findViewById(R.id.toggleButton);
-        baseDelta = findViewById(R.id.editText2);
-        shoulderDelta = findViewById(R.id.editText3);
-        elbowDelta = findViewById(R.id.editText4);
-        wristDelta = findViewById(R.id.editText5);
-        rotateDelta = findViewById(R.id.editText6);
-        gripperDelta = findViewById(R.id.editText7);
+        toggleTest = findViewById(R.id.test_toggle);
+        baseBtn = findViewById(R.id.base_toggle);
+        baseAngle = findViewById(R.id.base_angle);
+        shoulderBtn = findViewById(R.id.shoulder_toggle);
+        shoulderAngle = findViewById(R.id.shoulder_angle);
+        elbowBtn = findViewById(R.id.elbow_toggle);
+        elbowAngle = findViewById(R.id.elbow_angle);
+        wristBtn = findViewById(R.id.wrist_toggle);
+        wristAngle = findViewById(R.id.wrist_angle);
+        rotateBtn = findViewById(R.id.rotate_toggle);
+        rotateAngle = findViewById(R.id.rotate_angle);
+        gripperBtn = findViewById(R.id.gripper_toggle);
+        gripperAngle = findViewById(R.id.gripper_angle);
+        stepSize = findViewById(R.id.step_size);
         mTextViewResult = findViewById(R.id.result);
-        mTextStates = findViewById(R.id.states);
+
+        baseBtn.setChecked(true);
+        baseBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                onMotorToggle(v);
+            }
+        });
+        shoulderBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                onMotorToggle(v);
+            }
+        });
+        elbowBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                onMotorToggle(v);
+            }
+        });
+        wristBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                onMotorToggle(v);
+            }
+        });
+        rotateBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                onMotorToggle(v);
+            }
+        });
+        gripperBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                onMotorToggle(v);
+            }
+        });
+
+        sendRequest("probe/states", true);
     }
 
     public String getUrlHost(){
         return (toggleTest.isChecked())?getUrl:testUrl;
     }
 
-    public void onLedToggle(View view){
-        sendRequest("action/led/toggle", false);
+    public void onReset(View view){
+        sendRequest("action/reset", true);
     }
 
-    public void onBaseApply(View view){
-        String delta = baseDelta.getText().toString();
-        sendRequest("action/base/" + delta, false);
+    private void clearAllSelectedMotor(){
+        baseBtn.setChecked(false);
+        shoulderBtn.setChecked(false);
+        elbowBtn.setChecked(false);
+        wristBtn.setChecked(false);
+        rotateBtn.setChecked(false);
+        gripperBtn.setChecked(false);
     }
 
-    public void onShoulderApply(View view){
-        String delta = shoulderDelta.getText().toString();
-        sendRequest("action/shoulder/" + delta, false);
+    private void displayMotor(){
+        clearAllSelectedMotor();
+        switch (selectedMotor){
+            case 0:
+                baseBtn.setChecked(true);
+                break;
+            case 1:
+                shoulderBtn.setChecked(true);
+                break;
+            case 2:
+                elbowBtn.setChecked(true);
+                break;
+            case 3:
+                wristBtn.setChecked(true);
+                break;
+            case 4:
+                rotateBtn.setChecked(true);
+                break;
+            case 5:
+                gripperBtn.setChecked(true);
+                break;
+        }
     }
 
-    public void onElbowApply(View view){
-        String delta = elbowDelta.getText().toString();
-        sendRequest("action/elbow/" + delta, false);
+    public void onMotorToggle(View view){
+        switch (view.getId()){
+            case R.id.base_toggle:
+                selectedMotor = 0;
+                break;
+            case R.id.shoulder_toggle:
+                selectedMotor = 1;
+                break;
+            case R.id.elbow_toggle:
+                selectedMotor = 2;
+                break;
+            case R.id.wrist_toggle:
+                selectedMotor = 3;
+                break;
+            case R.id.rotate_toggle:
+                selectedMotor = 4;
+                break;
+            case R.id.gripper_toggle:
+                selectedMotor = 5;
+                break;
+        }
+        displayMotor();
     }
 
-    public void onWristApply(View view){
-        String delta = wristDelta.getText().toString();
-        sendRequest("action/wrist/" + delta, false);
+    private String getMotorNode(){
+        switch (selectedMotor){
+            case 0:
+                return "base/";
+            case 1:
+                return "shoulder/";
+            case 2:
+                return "elbow/";
+            case 3:
+                return "wrist/";
+            case 4:
+                return "rotate/";
+            case 5:
+                return "gripper/";
+        }
+        return "/";
     }
 
-    public void onRotateApply(View view){
-        String delta = rotateDelta.getText().toString();
-        sendRequest("action/rotate/" + delta, false);
+    public void onAdjustMotor(View view){
+        switch (view.getId()){
+            case R.id.up:
+                sendRequest("action/" + getMotorNode() + stepSize.getText().toString(), false);
+                break;
+            case R.id.down:
+                sendRequest("action/" + getMotorNode() + "-" + stepSize.getText().toString(), false);
+                break;
+        }
     }
 
-    public void onGripperApply(View view){
-        String delta = gripperDelta.getText().toString();
-        sendRequest("action/gripper/" + delta, false);
+    private void displayState(JSONObject states, String key, TextView angleView){
+        try {
+            angleView.setText(Integer.toString(states.getInt(key)));
+        }
+        catch(org.json.JSONException error){
+            angleView.setText(getString(R.string.NotFound));
+        }
+    }
+
+    private void displayStates(JSONObject states){
+        Log.d(getString(R.string.app_name), "displayStates: " + states.toString());
+        displayState(states, "base", baseAngle);
+        displayState(states, "shoulder", shoulderAngle);
+        displayState(states, "elbow", elbowAngle);
+        displayState(states, "wrist", wristAngle);
+        displayState(states, "rotate", rotateAngle);
+        displayState(states, "gripper", gripperAngle);
     }
 
     public void sendRequest(String url, final boolean isForStates){
@@ -122,9 +243,13 @@ public class MainActivity extends AppCompatActivity {
                             try {
                                 result = new JSONObject(res);
                                 if(isForStates) {
-                                    mTextStates.setText(result.toString());
+                                    displayStates(result);
                                 }else{
-                                    mTextViewResult.setText(result.getString("result"));
+                                    if(result.getString("result") == "error") {
+                                        mTextViewResult.setText(result.getString("message"));
+                                    }else{
+                                        mTextViewResult.setText(result.getString("result"));
+                                    }
                                     sendRequest("probe/states", true);
                                 }
                             } catch (JSONException e) {
