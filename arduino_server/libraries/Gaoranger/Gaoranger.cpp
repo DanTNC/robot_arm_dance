@@ -32,8 +32,9 @@ RAD::RAD(void){
 	reset();
 }
 
-void RAD::reset(void){
+STATES RAD::reset(void){
 	states = *(new STATES(0, 40, 180, 0, 170, 73));
+	return states;
 }
 
 STATES RAD::probe(void){

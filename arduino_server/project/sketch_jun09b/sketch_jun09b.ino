@@ -88,37 +88,37 @@ void process(YunClient client) {
       STATES states;
       if(action == "base"){
         states = rad.do_action(0, params.toInt());
-        Braccio.ServoMovement(20, states.base, states.shoulder, states.elbow, states.wrist_ver, states.wrist_rot, states.gripper);
+        moveMotors(states);
         client.print("{\"result\":\"ok\"}");
         return;
       }
       if(action == "shoulder"){
         states = rad.do_action(1, params.toInt());
-        Braccio.ServoMovement(20, states.base, states.shoulder, states.elbow, states.wrist_ver, states.wrist_rot, states.gripper);
+        moveMotors(states);
         client.print("{\"result\":\"ok\"}");
         return;
       }
       if(action == "elbow"){
         states = rad.do_action(2, params.toInt());
-        Braccio.ServoMovement(20, states.base, states.shoulder, states.elbow, states.wrist_ver, states.wrist_rot, states.gripper);
+        moveMotors(states);
         client.print("{\"result\":\"ok\"}");
         return;
       }
       if(action == "wrist"){
         states = rad.do_action(3, params.toInt());
-        Braccio.ServoMovement(20, states.base, states.shoulder, states.elbow, states.wrist_ver, states.wrist_rot, states.gripper);
+        moveMotors(states);
         client.print("{\"result\":\"ok\"}");
         return;
       }
       if(action == "rotate"){
         states = rad.do_action(4, params.toInt());
-        Braccio.ServoMovement(20, states.base, states.shoulder, states.elbow, states.wrist_ver, states.wrist_rot, states.gripper);
+        moveMotors(states);
         client.print("{\"result\":\"ok\"}");
         return;
       }
       if(action == "gripper"){
         states = rad.do_action(5, params.toInt());
-        Braccio.ServoMovement(20, states.base, states.shoulder, states.elbow, states.wrist_ver, states.wrist_rot, states.gripper);
+        moveMotors(states);
         client.print("{\"result\":\"ok\"}");
         return;
       }
@@ -147,9 +147,9 @@ void process(YunClient client) {
       }
       client.print("{\"result\":\"error\",\"message\":\"no such action\"}");
     }else if(query == "reset"){
-      Braccio.begin();
-      rad.reset();
-      rad.probe().outjson(client);
+      STATES states = rad.reset();
+      moveMotors(states);
+      states.outjson(client);
     }else{
       client.print("{\"result\":\"error\",\"message\":\"missing action parameters\"}");
     }
@@ -161,6 +161,10 @@ void writeHeader(YunClient client){
    client.println("Status: 200");
    client.println("Content-type: application/json");
    client.println();
+}
+
+void moveMotors(STATES states){
+   Braccio.ServoMovement(20, states.base, states.shoulder, states.elbow, states.wrist_ver, states.wrist_rot, states.gripper);
 }
 
 String nextNode(String& query){
