@@ -2,12 +2,12 @@ class RAD():
     def __init__(self):
         self.states = {
             "led": False,
-            "base": 90,
-            "shoulder": 45,
+            "base": 0,
+            "shoulder": 40,
             "elbow": 180,
-            "wrist": 180,
-            "rotate": 90,
-            "gripper": 10
+            "wrist": 0,
+            "rotate": 170,
+            "gripper": 73
         }
         self.actions = []
         self.choreography = []

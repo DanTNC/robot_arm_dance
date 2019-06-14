@@ -17,10 +17,11 @@ Servo gripper;
 
 void setup() {
   // Start our connection
+  Braccio.begin();
   Serial.begin(9600);
   pinMode(LEDPIN,OUTPUT);
   digitalWrite(LEDPIN,HIGH); // turn on Led while connecting
-  Bridge.begin();  
+  Bridge.begin();
 
   // Show a fancy flash pattern once connected
   digitalWrite(LEDPIN,LOW); 

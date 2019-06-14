@@ -29,7 +29,7 @@ void STATES::outjson(YunClient client){
 }
 
 RAD::RAD(void){
-	states = *(new STATES(0, 40, 180, 170, 0, 73));
+	states = *(new STATES(0, 40, 180, 0, 170, 73));
 }
 
 STATES RAD::probe(void){
