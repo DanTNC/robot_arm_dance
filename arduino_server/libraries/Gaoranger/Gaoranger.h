@@ -24,6 +24,7 @@ public:
 	STATES reset(void);
 	STATES probe(void);
 	STATES do_action(int action, int param);
+	STATES set_states(STATES states_);
   
 private:
 	STATES states;
