@@ -30,6 +30,28 @@ def do_action(action, param):
 @app.route('/probe/<part>', methods=["GET"])
 def monitor(part):
     return jsonify(rad.probe(part))
+    
+@app.route('/choreography/<num_actions>/<actions>', methods=["GET"])
+def do_choreography(num_actions, actions):
+    actions = actions[:-1].split(";")
+    result = True
+    for action in actions:
+        motor, angle = action.split(":")
+        result = result and rad.action(int(motor), int(angle))
+    if result:
+        emit("refresh", namespace="/", broadcast=True)
+        return jsonify({"result": "ok"})
+    else:
+        return jsonify({"result": "error"})
+        
+@app.route('/toward/<angles>', methods=["GET"])
+def set_states(angles):
+    angles = angles[:-1].split(";")
+    if rad.set_states(angles):
+        emit("refresh", namespace="/", broadcast=True)
+        return jsonify({"result": "ok"})
+    else:
+        return jsonify({"result": "error"})
 
 @socketio.on('connected')
 def handle_my_custom_event(json):

@@ -8,14 +8,21 @@ class RAD():
             "actions": self.probe_actions,
             "choreography": self.probe_choreography
         }
-        self.ACT_CPU = {
-            "led": self.act_led,
-            "base": self.act_base,
-            "shoulder": self.act_shoulder,
-            "elbow": self.act_elbow,
-            "wrist": self.act_wrist,
-            "rotate": self.act_rotate,
-            "gripper": self.act_gripper
+        self.MOTOR = [
+            "base",
+            "shoulder",
+            "elbow",
+            "wrist",
+            "rotate",
+            "gripper"
+        ]
+        self.LIMITS = {
+            "base": (0, 180),
+            "shoulder": (15, 165),
+            "elbow": (0, 180),
+            "wrist": (0, 180),
+            "rotate": (0, 180),
+            "gripper": (10, 73)
         }
         
     def init_states(self):
@@ -42,7 +49,12 @@ class RAD():
         return self.choreography
 
     def action(self, act, param):
-        return self.ACT_CPU[act](param)
+        if type(act) == int:
+            act = self.MOTOR[act]
+        if act == "led":
+            return self.act_led(param)
+        else:
+            return self.act_motor(act, param)
 
     def act_led(self, arg):
         if arg == "toggle":
@@ -52,54 +64,30 @@ class RAD():
         if arg == "off":
             self.states["led"] = False
         return True
+        
+    def act_motor(self, act, arg):
+        arg = int(arg)
+        target = self.states[act] + arg
+        target = self.limit_crip(act, target)
+        self.states[act] = target
+        return True
     
-    def limit_crip(self, ll, ul, val):
+    def limit_crip(self, motor, val):
+        ll, ul = self.LIMITS[motor]
         if val < ll: return ll
         if val > ul: return ul
         return val
-    
-    def act_base(self, arg):
-        arg = int(arg)
-        target = self.states["base"] + arg
-        target = self.limit_crip(0, 180, target)
-        self.states["base"] = target
-        return True
-        
-    def act_shoulder(self, arg):
-        arg = int(arg)
-        target = self.states["shoulder"] + arg
-        target = self.limit_crip(15, 165, target)
-        self.states["shoulder"] = target
-        return True
-        
-    def act_elbow(self, arg):
-        arg = int(arg)
-        target = self.states["elbow"] + arg
-        target = self.limit_crip(0, 180, target)
-        self.states["elbow"] = target
-        return True
-        
-    def act_wrist(self, arg):
-        arg = int(arg)
-        target = self.states["wrist"] + arg
-        target = self.limit_crip(0, 180, target)
-        self.states["wrist"] = target
-        return True
-        
-    def act_rotate(self, arg):
-        arg = int(arg)
-        target = self.states["rotate"] + arg
-        target = self.limit_crip(0, 180, target)
-        self.states["rotate"] = target
-        return True
-        
-    def act_gripper(self, arg):
-        arg = int(arg)
-        target = self.states["gripper"] + arg
-        target = self.limit_crip(10, 73, target)
-        self.states["gripper"] = target
-        return True
         
     def reset(self):
         self.init_states()
         return self.states
+        
+    def set_states(self, angles):
+        for i, angle in enumerate(angles):
+            angle = int(angle)
+            motor = self.MOTOR[i]
+            angle = self.limit_crip(motor, angle)
+            self.states[motor] = angle
+        return True
+            
+            
