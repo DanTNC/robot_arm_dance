@@ -32,8 +32,9 @@ RAD::RAD(void){
 	reset();
 }
 
-void RAD::reset(void){
+STATES RAD::reset(void){
 	states = *(new STATES(0, 40, 180, 0, 170, 73));
+	return states;
 }
 
 STATES RAD::probe(void){
@@ -105,5 +106,46 @@ STATES RAD::do_action(int action, int param){
 		break;
 	}
 	return states;
+}
+
+STATES RAD::set_states(STATES states_){
+	if(states_.base < 0){
+		states_.base = 0;
+	}
+	if(states_.base > 180){
+		states_.base = 180;
+	}
+	if(states_.shoulder < 15){
+		states_.shoulder = 15;
+	}
+	if(states_.shoulder > 165){
+		states_.shoulder = 165;
+	}
+	if(states_.elbow < 0){
+		states_.elbow = 0;
+	}
+	if(states_.elbow > 180){
+		states_.elbow = 180;
+	}
+	if(states_.wrist_ver < 0){
+		states_.wrist_ver = 0;
+	}
+	if(states_.wrist_ver > 180){
+		states_.wrist_ver = 180;
+	}
+	if(states_.wrist_rot < 0){
+		states_.wrist_rot = 0;
+	}
+	if(states_.wrist_rot > 180){
+		states_.wrist_rot = 180;
+	}
+	if(states_.gripper < 10){
+		states_.gripper = 10;
+	}
+	if(states_.gripper > 73){
+		states_.gripper = 73;
+	}
+	states = states_;
+	return states_;
 }
 

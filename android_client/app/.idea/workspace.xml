@@ -11,15 +11,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89e543b6-e48c-404d-9043-06f639adc867" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_baseline_keyboard_arrow_down_24px.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_baseline_keyboard_arrow_up_24px.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/round_button.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gaoranger/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gaoranger/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,31 +38,17 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/gaoranger/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="110" column="42" selection-start-line="110" selection-start-column="42" selection-end-line="110" selection-end-column="42" />
+            <state relative-caret-position="285">
+              <caret line="260" column="92" selection-start-line="260" selection-start-column="92" selection-end-line="260" selection-end-column="92" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2276#2425#0" expanded="true" />
-                <element signature="e#2424#2425#0" expanded="true" />
-                <element signature="e#2463#2612#0" expanded="true" />
-                <element signature="e#2611#2612#0" expanded="true" />
-                <element signature="e#2650#2799#0" expanded="true" />
-                <element signature="e#2798#2799#0" expanded="true" />
-                <element signature="e#2837#2986#0" expanded="true" />
-                <element signature="e#2985#2986#0" expanded="true" />
-                <element signature="e#3024#3173#0" expanded="true" />
-                <element signature="e#3172#3173#0" expanded="true" />
-                <element signature="e#3211#3360#0" expanded="true" />
-                <element signature="e#3359#3360#0" expanded="true" />
-                <element signature="e#3542#3543#0" expanded="true" />
-                <element signature="e#3571#3572#0" expanded="true" />
-                <element signature="e#6131#6159#0" expanded="true" />
-                <element signature="e#6294#6322#0" expanded="true" />
-                <element signature="e#7445#8347#0" expanded="true" />
-                <element signature="e#8346#8347#0" expanded="true" />
+                <element signature="e#2263#2408#0" expanded="true" />
+                <element signature="e#2407#2408#0" expanded="true" />
+                <element signature="e#3826#3827#0" expanded="true" />
+                <element signature="e#3875#3876#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -77,35 +56,12 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_main.xml">
-          <provider selected="true" editor-type-id="android-designer2" />
           <provider editor-type-id="text-editor">
-            <state relative-caret-position="380">
+            <state relative-caret-position="4731">
               <caret line="249" column="36" selection-start-line="249" selection-start-column="30" selection-end-line="249" selection-end-column="36" />
-              <folding>
-                <element signature="e#1019#1033#0" expanded="true" />
-                <element signature="e#1057#1071#0" expanded="true" />
-                <element signature="e#1592#1604#0" expanded="true" />
-                <element signature="e#2166#2184#0" expanded="true" />
-                <element signature="e#2208#2226#0" expanded="true" />
-                <element signature="e#2662#2674#0" expanded="true" />
-                <element signature="e#3251#3266#0" expanded="true" />
-                <element signature="e#3290#3305#0" expanded="true" />
-                <element signature="e#3746#3758#0" expanded="true" />
-                <element signature="e#4326#4341#0" expanded="true" />
-                <element signature="e#4365#4380#0" expanded="true" />
-                <element signature="e#4815#4827#0" expanded="true" />
-                <element signature="e#5396#5412#0" expanded="true" />
-                <element signature="e#5436#5452#0" expanded="true" />
-                <element signature="e#5888#5900#0" expanded="true" />
-                <element signature="e#6473#6490#0" expanded="true" />
-                <element signature="e#6514#6531#0" expanded="true" />
-                <element signature="e#6970#6982#0" expanded="true" />
-                <element signature="e#7613#7628#0" expanded="true" />
-                <element signature="e#8719#8731#0" expanded="true" />
-                <element signature="e#8666#8678#0" expanded="true" />
-              </folding>
             </state>
           </provider>
+          <provider selected="true" editor-type-id="android-designer2" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -135,11 +91,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/res/values/colors.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+            <state relative-caret-position="133">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
@@ -177,9 +133,9 @@
         <option value="$PROJECT_DIR$/src/main/res/drawable/ic_baseline_keyboard_arrow_up_24px.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/gaoranger/MainActivity2.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_main2.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/gaoranger/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/src/main/res/values/colors.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/gaoranger/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -195,7 +151,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
       <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
@@ -251,6 +206,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="ProjectPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -424,25 +380,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="523">
-          <caret line="239" column="36" selection-start-line="239" selection-start-column="36" selection-end-line="239" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/gaoranger/MainActivity2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="67" column="39" selection-start-line="67" selection-start-column="39" selection-end-line="67" selection-end-column="39" />
-          <folding>
-            <element signature="e#1957#1958#0" expanded="true" />
-            <element signature="e#2012#2013#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/gaoranger/MainActivity2.java" />
     <entry file="file://$PROJECT_DIR$/src/main/res/drawable/round_button.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
@@ -452,67 +390,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/gaoranger/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="110" column="42" selection-start-line="110" selection-start-column="42" selection-end-line="110" selection-end-column="42" />
+        <state relative-caret-position="285">
+          <caret line="260" column="92" selection-start-line="260" selection-start-column="92" selection-end-line="260" selection-end-column="92" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2276#2425#0" expanded="true" />
-            <element signature="e#2424#2425#0" expanded="true" />
-            <element signature="e#2463#2612#0" expanded="true" />
-            <element signature="e#2611#2612#0" expanded="true" />
-            <element signature="e#2650#2799#0" expanded="true" />
-            <element signature="e#2798#2799#0" expanded="true" />
-            <element signature="e#2837#2986#0" expanded="true" />
-            <element signature="e#2985#2986#0" expanded="true" />
-            <element signature="e#3024#3173#0" expanded="true" />
-            <element signature="e#3172#3173#0" expanded="true" />
-            <element signature="e#3211#3360#0" expanded="true" />
-            <element signature="e#3359#3360#0" expanded="true" />
-            <element signature="e#3542#3543#0" expanded="true" />
-            <element signature="e#3571#3572#0" expanded="true" />
-            <element signature="e#6131#6159#0" expanded="true" />
-            <element signature="e#6294#6322#0" expanded="true" />
-            <element signature="e#7445#8347#0" expanded="true" />
-            <element signature="e#8346#8347#0" expanded="true" />
+            <element signature="e#2263#2408#0" expanded="true" />
+            <element signature="e#2407#2408#0" expanded="true" />
+            <element signature="e#3826#3827#0" expanded="true" />
+            <element signature="e#3875#3876#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
-        <state relative-caret-position="380">
+        <state relative-caret-position="4731">
           <caret line="249" column="36" selection-start-line="249" selection-start-column="30" selection-end-line="249" selection-end-column="36" />
-          <folding>
-            <element signature="e#1019#1033#0" expanded="true" />
-            <element signature="e#1057#1071#0" expanded="true" />
-            <element signature="e#1592#1604#0" expanded="true" />
-            <element signature="e#2166#2184#0" expanded="true" />
-            <element signature="e#2208#2226#0" expanded="true" />
-            <element signature="e#2662#2674#0" expanded="true" />
-            <element signature="e#3251#3266#0" expanded="true" />
-            <element signature="e#3290#3305#0" expanded="true" />
-            <element signature="e#3746#3758#0" expanded="true" />
-            <element signature="e#4326#4341#0" expanded="true" />
-            <element signature="e#4365#4380#0" expanded="true" />
-            <element signature="e#4815#4827#0" expanded="true" />
-            <element signature="e#5396#5412#0" expanded="true" />
-            <element signature="e#5436#5452#0" expanded="true" />
-            <element signature="e#5888#5900#0" expanded="true" />
-            <element signature="e#6473#6490#0" expanded="true" />
-            <element signature="e#6514#6531#0" expanded="true" />
-            <element signature="e#6970#6982#0" expanded="true" />
-            <element signature="e#7613#7628#0" expanded="true" />
-            <element signature="e#8719#8731#0" expanded="true" />
-            <element signature="e#8666#8678#0" expanded="true" />
-          </folding>
         </state>
       </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+        <state relative-caret-position="133">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>

@@ -15,18 +15,19 @@ public:
 	int wrist_rot;
 	int gripper;
 	void outjson(YunClient client);
-	void reset();
 };
 
 class RAD{
   
 public:
-  RAD(void);
-  STATES probe(void);
-  STATES do_action(int action, int param);
+	RAD(void);
+	STATES reset(void);
+	STATES probe(void);
+	STATES do_action(int action, int param);
+	STATES set_states(STATES states_);
   
 private:
-  STATES states;
+	STATES states;
   
 };  
   

@@ -63,6 +63,12 @@ public class MainActivity extends AppCompatActivity {
         mTextViewResult = findViewById(R.id.result);
 
         baseBtn.setChecked(true);
+        toggleTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getStates();
+            }
+        });
         baseBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -100,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        sendRequest("probe/states", true);
+        getStates();
     }
 
     public String getUrlHost(){
@@ -109,6 +115,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void onReset(View view){
         sendRequest("action/reset", true);
+    }
+
+    private void getStates(){
+        sendRequest("probe/states", true);
     }
 
     private void clearAllSelectedMotor(){
@@ -250,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
                                     }else{
                                         mTextViewResult.setText(result.getString("result"));
                                     }
-                                    sendRequest("probe/states", true);
+                                    getStates();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
