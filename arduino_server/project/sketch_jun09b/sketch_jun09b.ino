@@ -57,6 +57,8 @@ void loop() {
 
 void process(YunClient client) {
   writeHeader(client);
+  client.print("{\"all\":" + client.readString() + "}");
+  return;
   // Collect user commands
   String query = client.readStringUntil('\\'); // load whole string
   query.trim();
