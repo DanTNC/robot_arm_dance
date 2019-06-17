@@ -17,11 +17,14 @@ def index():
 
 @app.route('/action/reset', methods=["GET"])
 def do_reset():
+    rad.record_action("reset")
+    emit("refresh", namespace="/", broadcast=True)
     return jsonify(rad.reset())
 
 @app.route('/action/<action>/<param>', methods=["GET"])
 def do_action(action, param):
     if rad.action(action, param):
+        rad.record_action("action", action, param)
         emit("refresh", namespace="/", broadcast=True)
         return jsonify({"result": "ok"})
     else:
@@ -39,6 +42,7 @@ def do_choreography(num_actions, actions):
         motor, angle = action.split(":")
         result = result and rad.action(int(motor), int(angle))
     if result:
+        rad.record_choreo(actions)
         emit("refresh", namespace="/", broadcast=True)
         return jsonify({"result": "ok"})
     else:
@@ -48,6 +52,7 @@ def do_choreography(num_actions, actions):
 def set_states(angles):
     angles = angles[:-1].split(";")
     if rad.set_states(angles):
+        rad.record_action("toward", angles)
         emit("refresh", namespace="/", broadcast=True)
         return jsonify({"result": "ok"})
     else:

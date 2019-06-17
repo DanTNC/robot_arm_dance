@@ -89,5 +89,18 @@ class RAD():
             angle = self.limit_crip(motor, angle)
             self.states[motor] = angle
         return True
-            
+        
+    def record_action(self, inst, *param):
+        if inst == "reset":
+            self.actions.append({"inst": "reset"})
+            return
+        if inst == "action":
+            self.actions.append({"inst": "action", "actor": param[0], "param": param[1]})
+            return
+        if inst == "toward":
+            self.actions.append({"inst": "toward", "angles": param[0]})
+            return
+    
+    def record_choreo(self, actions):
+        self.choreography.append(actions)
             

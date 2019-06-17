@@ -16,14 +16,22 @@ $(function(){
         url: "/probe/actions",
         success: (res) => {
             console.log(res);
-            $("#actions").text(res);
+            var text = "";
+            for(let action of res){
+                text += JSON.stringify(action) + "<br>"
+            }
+            $("#actions").html(text);
         }
       })
       $.ajax({
         url: "/probe/choreography",
         success: (res) => {
             console.log(res);
-            $("#choreography").text(res);
+            var text = "";
+            for(let choreography of res){
+                text += JSON.stringify(choreography) + "<br>"
+            }
+            $("#choreography").html(text);
         }
       })
     };
