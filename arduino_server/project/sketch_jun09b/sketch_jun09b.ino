@@ -216,7 +216,7 @@ void writeHeader(YunClient client){
 }
 
 void moveMotors(STATES states){
-   Braccio.ServoMovement(20, states.base, states.shoulder, states.elbow, states.wrist_ver, states.wrist_rot, states.gripper);
+   Braccio.ServoMovement(0, states.base, states.shoulder, states.elbow, states.wrist_ver, states.wrist_rot, states.gripper);
 }
 
 String nextDelim(String &query, String delim){

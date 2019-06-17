@@ -8,15 +8,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script> -->
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/style.css') }}" />
+    <script src="main.js"></script>
 </head>
 <body>
     <div>
+        <h1>States</h1>
         <p id="states"></p>
         <!-- shows actors' states -->
+        <h1>Actions</h1>
         <p id="actions"></p>
         <!-- shows actions obtained from requests, labeded with choreography if belongs to one -->
+        <h1>Choreography</h1>
         <p id="choreography"></p>
         <!-- show choreography obtained from requests -->
     </div>
