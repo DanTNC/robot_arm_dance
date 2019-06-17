@@ -158,7 +158,7 @@ public class SettingActivity extends AppCompatActivity {
 
 
         } // Otherwise, start with empty fields.
-        
+
         //Tsan An add function
         save.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
