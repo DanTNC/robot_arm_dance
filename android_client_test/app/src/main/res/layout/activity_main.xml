@@ -1,255 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<!-- Copyright 2018 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. -->
+
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="com.example.gaoranger.MainActivity">
 
-    <ToggleButton
-        android:id="@+id/test_toggle"
-        android:layout_width="180dp"
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:checked="false"
-        android:textOff="@string/test_server"
-        android:textOn="@string/robot_arm"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-    <ToggleButton
-        android:id="@+id/base_toggle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textOff="@string/base"
-        android:textOn="@string/base"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/test_toggle"
-        app:layout_constraintStart_toStartOf="@+id/test_toggle"
-        app:layout_constraintTop_toBottomOf="@+id/test_toggle" />
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    <TextView
-        android:id="@+id/base_angle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:gravity="center"
-        android:text="@string/_0"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/base_toggle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/base_toggle"
-        app:layout_constraintTop_toBottomOf="@+id/test_toggle" />
+    </android.support.design.widget.AppBarLayout>
 
-    <ToggleButton
-        android:id="@+id/shoulder_toggle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:textOff="@string/shoulder"
-        android:textOn="@string/shoulder"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/base_toggle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/base_toggle" />
+    <include layout="@layout/content_main" />
 
-    <TextView
-        android:id="@+id/shoulder_angle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:gravity="center"
-        android:text="@string/_0"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/shoulder_toggle"
-        app:layout_constraintEnd_toEndOf="@+id/base_angle"
-        app:layout_constraintStart_toEndOf="@+id/shoulder_toggle"
-        app:layout_constraintTop_toTopOf="@+id/shoulder_toggle" />
-
-    <ToggleButton
-        android:id="@+id/elbow_toggle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:textOff="@string/elbow"
-        android:textOn="@string/elbow"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/shoulder_toggle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shoulder_toggle" />
-
-    <TextView
-        android:id="@+id/elbow_angle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:gravity="center"
-        android:text="@string/_0"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/elbow_toggle"
-        app:layout_constraintEnd_toEndOf="@+id/base_angle"
-        app:layout_constraintStart_toEndOf="@+id/elbow_toggle"
-        app:layout_constraintTop_toTopOf="@+id/elbow_toggle" />
-
-    <ToggleButton
-        android:id="@+id/wrist_toggle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:textOff="@string/wrist"
-        android:textOn="@string/wrist"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/elbow_toggle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/elbow_toggle" />
-
-    <TextView
-        android:id="@+id/wrist_angle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:gravity="center"
-        android:text="@string/_0"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/wrist_toggle"
-        app:layout_constraintEnd_toEndOf="@+id/base_angle"
-        app:layout_constraintStart_toEndOf="@+id/wrist_toggle"
-        app:layout_constraintTop_toTopOf="@+id/wrist_toggle" />
-
-    <ToggleButton
-        android:id="@+id/rotate_toggle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:textOff="@string/rotate"
-        android:textOn="@string/rotate"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/wrist_toggle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wrist_toggle" />
-
-    <TextView
-        android:id="@+id/rotate_angle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:gravity="center"
-        android:text="@string/_0"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/rotate_toggle"
-        app:layout_constraintEnd_toEndOf="@+id/base_angle"
-        app:layout_constraintStart_toEndOf="@+id/rotate_toggle"
-        app:layout_constraintTop_toTopOf="@+id/rotate_toggle" />
-
-    <ToggleButton
-        android:id="@+id/gripper_toggle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:textOff="@string/gripper"
-        android:textOn="@string/gripper"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/rotate_toggle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rotate_toggle" />
-
-    <TextView
-        android:id="@+id/gripper_angle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:gravity="center"
-        android:text="@string/_0"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/gripper_toggle"
-        app:layout_constraintEnd_toEndOf="@+id/base_angle"
-        app:layout_constraintStart_toEndOf="@+id/gripper_toggle"
-        app:layout_constraintTop_toTopOf="@+id/gripper_toggle" />
-
-    <Button
-        android:id="@+id/reset"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        android:background="@color/colorPrimary"
-        android:onClick="onReset"
-        android:text="@string/reset"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/base_angle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/test_toggle"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/down"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/ic_baseline_keyboard_arrow_down_24px"
-        android:backgroundTint="@android:color/holo_green_dark"
-        android:onClick="onAdjustMotor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/result" />
-
-    <EditText
-        android:id="@+id/step_size"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/_0"
-        android:textSize="20sp"
-        android:inputType="number"
-        android:textAlignment="center"
-        android:gravity="center"
-        android:autofillHints="@string/_0"
-        app:layout_constraintBottom_toBottomOf="@+id/down"
-        app:layout_constraintEnd_toStartOf="@+id/up"
-        app:layout_constraintStart_toEndOf="@+id/down"
-        app:layout_constraintTop_toTopOf="@+id/down" />
-
-    <ImageButton
-        android:id="@+id/up"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/ic_baseline_keyboard_arrow_up_24px"
-        android:backgroundTint="@android:color/holo_green_dark"
-        android:onClick="onAdjustMotor"
-        app:layout_constraintBottom_toBottomOf="@+id/step_size"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/step_size" />
-
-    <TextView
-        android:id="@+id/result"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/result"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gripper_toggle" />
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_add_black_24dp"
+        app:backgroundTint="@color/colorAccent" />
 
-</android.support.constraint.ConstraintLayout>
+</android.support.design.widget.CoordinatorLayout>

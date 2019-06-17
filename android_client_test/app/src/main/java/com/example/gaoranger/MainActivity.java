@@ -1,274 +1,201 @@
+/*
+ * Copyright (C) 2018 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.example.gaoranger;
 
-import android.support.v7.app.AppCompatActivity;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.ToggleButton;
+import android.widget.Toast;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.IOException;
 
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import java.util.List;
 
+/**
+ * This class displays a list of words in a RecyclerView.
+ * The words are saved in a Room database.
+ * The layout for this activity also displays an FAB that
+ * allows users to start the NewWordActivity to add new words.
+ * Users can delete a word by swiping it away, or delete all words
+ * through the Options menu.
+ * Whenever a new word is added, deleted, or updated, the RecyclerView
+ * showing the list of words automatically updates.
+ */
 public class MainActivity extends AppCompatActivity {
 
-    private String getUrl = "http://192.168.1.147/arduino/";
-    private String testUrl = "https://smilegaoranger.herokuapp.com/";
+    private ActionViewModel mActionViewModel;
 
-    private ToggleButton toggleTest;
-    private ToggleButton baseBtn;
-    private TextView baseAngle;
-    private ToggleButton shoulderBtn;
-    private TextView shoulderAngle;
-    private ToggleButton elbowBtn;
-    private TextView elbowAngle;
-    private ToggleButton wristBtn;
-    private TextView wristAngle;
-    private ToggleButton rotateBtn;
-    private TextView rotateAngle;
-    private ToggleButton gripperBtn;
-    private TextView gripperAngle;
-    private EditText stepSize;
-    private int selectedMotor = 0;
-    private TextView mTextViewResult;
+    public static final int NEW_ACTION_ACTIVITY_REQUEST_CODE = 1;
+    public static final int UPDATE_ACTION_ACTIVITY_REQUEST_CODE = 2;
+
+    public static final String EXTRA_DATA_UPDATE_NAME = "extra_word_to_be_updated";
+    public static final String EXTRA_DATA_UPDATE_ACTION = "extra_ans_to_be_updated";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);;
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        toggleTest = findViewById(R.id.test_toggle);
-        baseBtn = findViewById(R.id.base_toggle);
-        baseAngle = findViewById(R.id.base_angle);
-        shoulderBtn = findViewById(R.id.shoulder_toggle);
-        shoulderAngle = findViewById(R.id.shoulder_angle);
-        elbowBtn = findViewById(R.id.elbow_toggle);
-        elbowAngle = findViewById(R.id.elbow_angle);
-        wristBtn = findViewById(R.id.wrist_toggle);
-        wristAngle = findViewById(R.id.wrist_angle);
-        rotateBtn = findViewById(R.id.rotate_toggle);
-        rotateAngle = findViewById(R.id.rotate_angle);
-        gripperBtn = findViewById(R.id.gripper_toggle);
-        gripperAngle = findViewById(R.id.gripper_angle);
-        stepSize = findViewById(R.id.step_size);
-        mTextViewResult = findViewById(R.id.result);
+        // Setup the RecyclerView
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        final ActionListAdapter adapter = new ActionListAdapter(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        baseBtn.setChecked(true);
-        toggleTest.setOnClickListener(new View.OnClickListener() {
+        // Setup the WordViewModel
+        mActionViewModel = ViewModelProviders.of(this).get(ActionViewModel.class);
+        // Get all the words from the database
+        // and associate them to the adapter
+        mActionViewModel.getAllActions().observe(this , new Observer<List<Action>>() {
             @Override
-            public void onClick(View v) {
-                getStates();
-            }
-        });
-        baseBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                onMotorToggle(v);
-            }
-        });
-        shoulderBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                onMotorToggle(v);
-            }
-        });
-        elbowBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                onMotorToggle(v);
-            }
-        });
-        wristBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                onMotorToggle(v);
-            }
-        });
-        rotateBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                onMotorToggle(v);
-            }
-        });
-        gripperBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                onMotorToggle(v);
+            public void onChanged(@Nullable final List<Action> actions) {
+                // Update the cached copy of the words in the adapter.
+                adapter.setActions(actions);
             }
         });
 
-        getStates();
+        // Floating action button setup
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SettingActivity.class);
+                startActivityForResult(intent, NEW_ACTION_ACTIVITY_REQUEST_CODE);
+            }
+        });
+
+        // Add the functionality to swipe items in the
+        // recycler view to delete that item
+        ItemTouchHelper helper = new ItemTouchHelper(
+                new ItemTouchHelper.SimpleCallback(0,
+                        ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+                    @Override
+                    // We are not implementing onMove() in this app
+                    public boolean onMove(RecyclerView recyclerView,
+                                          RecyclerView.ViewHolder viewHolder,
+                                          RecyclerView.ViewHolder target) {
+                        return false;
+                    }
+
+                    @Override
+                    // When the use swipes a word,
+                    // delete that word from the database.
+                    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                        int position = viewHolder.getAdapterPosition();
+                        Action myAction = adapter.getActionAtPosition(position);
+                        Toast.makeText(MainActivity.this,
+                                "Deleting" + " " +
+                                        myAction.getAction(), Toast.LENGTH_LONG).show();
+
+                        // Delete the word
+                        mActionViewModel.deleteAction(myAction);
+                    }
+                });
+        // Attach the item touch helper to the recycler view
+        helper.attachToRecyclerView(recyclerView);
+
+        adapter.setOnItemClickListener(new ActionListAdapter.ClickListener()  {
+
+            @Override
+            public void onItemClick(View v, int position) {
+                Action action = adapter.getActionAtPosition(position);
+                launchUpdateWordActivity(action);
+            }
+        });
     }
 
-    public String getUrlHost(){
-        return (toggleTest.isChecked())?getUrl:testUrl;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
-    public void onReset(View view){
-        sendRequest("action/reset", true);
+    // The options menu has a single item "Clear all data now"
+    // that deletes all the entries in the database
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.clear_data) {
+            // Add a toast just for confirmation
+            Toast.makeText(this, "Clear the data now!", Toast.LENGTH_LONG).show();
+
+            // Delete the existing data
+            mActionViewModel.deleteAll();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
-    private void getStates(){
-        sendRequest("probe/states", true);
-    }
+    /** When the user enters a new word in the NewWordActivity,
+     * that activity returns the result to this activity.
+     * If the user entered a new word, save it in the database.
 
-    private void clearAllSelectedMotor(){
-        baseBtn.setChecked(false);
-        shoulderBtn.setChecked(false);
-        elbowBtn.setChecked(false);
-        wristBtn.setChecked(false);
-        rotateBtn.setChecked(false);
-        gripperBtn.setChecked(false);
-    }
+     * @param requestCode -- ID for the request
+     * @param resultCode -- indicates success or failure
+     * @param data -- The Intent sent back from the NewWordActivity,
+     *             which includes the word that the user entered
+     */
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-    private void displayMotor(){
-        clearAllSelectedMotor();
-        switch (selectedMotor){
-            case 0:
-                baseBtn.setChecked(true);
-                break;
-            case 1:
-                shoulderBtn.setChecked(true);
-                break;
-            case 2:
-                elbowBtn.setChecked(true);
-                break;
-            case 3:
-                wristBtn.setChecked(true);
-                break;
-            case 4:
-                rotateBtn.setChecked(true);
-                break;
-            case 5:
-                gripperBtn.setChecked(true);
-                break;
+        if (requestCode == NEW_ACTION_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+            Action word = new Action(data.getStringExtra(SettingActivity.EXTRA_REPLY_NAME),data.getStringExtra(SettingActivity.EXTRA_REPLY_ACTION));
+            // Save the data
+            mActionViewModel.insert(word);
+        } else if (requestCode == UPDATE_ACTION_ACTIVITY_REQUEST_CODE
+                && resultCode == RESULT_OK) {
+            // TODO: implement "UPDATE"
+
+            Action word = new Action(data.getStringExtra(SettingActivity.EXTRA_REPLY_NAME),data.getStringExtra(SettingActivity.EXTRA_REPLY_ACTION));
+            // Save the data
+            int id=data.getIntExtra(SettingActivity.EXTRA_REPLY_ID,-1);
+            word.setId(id);
+            //if(data.getStringExtra(NewWordActivity.KEY_CHANGE)=="yes") {
+            mActionViewModel.update(word);
+
+        }else {
+            Toast.makeText(
+                    this, "Action not saved because it is empty", Toast.LENGTH_LONG).show();
         }
     }
-
-    public void onMotorToggle(View view){
-        switch (view.getId()){
-            case R.id.base_toggle:
-                selectedMotor = 0;
-                break;
-            case R.id.shoulder_toggle:
-                selectedMotor = 1;
-                break;
-            case R.id.elbow_toggle:
-                selectedMotor = 2;
-                break;
-            case R.id.wrist_toggle:
-                selectedMotor = 3;
-                break;
-            case R.id.rotate_toggle:
-                selectedMotor = 4;
-                break;
-            case R.id.gripper_toggle:
-                selectedMotor = 5;
-                break;
-        }
-        displayMotor();
-    }
-
-    private String getMotorNode(){
-        switch (selectedMotor){
-            case 0:
-                return "base/";
-            case 1:
-                return "shoulder/";
-            case 2:
-                return "elbow/";
-            case 3:
-                return "wrist/";
-            case 4:
-                return "rotate/";
-            case 5:
-                return "gripper/";
-        }
-        return "/";
-    }
-
-    public void onAdjustMotor(View view){
-        switch (view.getId()){
-            case R.id.up:
-                sendRequest("action/" + getMotorNode() + stepSize.getText().toString(), false);
-                break;
-            case R.id.down:
-                sendRequest("action/" + getMotorNode() + "-" + stepSize.getText().toString(), false);
-                break;
-        }
-    }
-
-    private void displayState(JSONObject states, String key, TextView angleView){
-        try {
-            angleView.setText(Integer.toString(states.getInt(key)));
-        }
-        catch(org.json.JSONException error){
-            angleView.setText(getString(R.string.NotFound));
-        }
-    }
-
-    private void displayStates(JSONObject states){
-        Log.d(getString(R.string.app_name), "displayStates: " + states.toString());
-        displayState(states, "base", baseAngle);
-        displayState(states, "shoulder", shoulderAngle);
-        displayState(states, "elbow", elbowAngle);
-        displayState(states, "wrist", wristAngle);
-        displayState(states, "rotate", rotateAngle);
-        displayState(states, "gripper", gripperAngle);
-    }
-
-    public void sendRequest(String url, final boolean isForStates){
-        OkHttpClient client = new OkHttpClient();
-
-        String targetUrl = getUrlHost() + url;
-
-        Request request = new Request.Builder()
-                .url(targetUrl)
-                .build();
-
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if(response.isSuccessful()){
-                    final String res = response.body().string();
-//
-                    MainActivity.this.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            JSONObject result = null;
-                            try {
-                                result = new JSONObject(res);
-                                if(isForStates) {
-                                    displayStates(result);
-                                }else{
-                                    if(result.getString("result") == "error") {
-                                        mTextViewResult.setText(result.getString("message"));
-                                    }else{
-                                        mTextViewResult.setText(result.getString("result"));
-                                    }
-                                    getStates();
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-                }
-            }
-        });
+    public void launchUpdateWordActivity(Action action) {
+        Intent intent = new Intent(this, ScriptActivity.class);
+        intent.putExtra("id", action.getId());
+        intent.putExtra(EXTRA_DATA_UPDATE_NAME, action.getName());
+        intent.putExtra(EXTRA_DATA_UPDATE_ACTION, action.getAction());
+        startActivityForResult(intent, UPDATE_ACTION_ACTIVITY_REQUEST_CODE);
     }
 }
