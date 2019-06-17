@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Gaoranger</string>
+    <string name="toggle">Toggle</string>
+    <string name="hw">Hello World!</string>
+    <string name="test_server">test server</string>
+    <string name="robot_arm">robot arm</string>
+    <string name="led">LED</string>
+    <string name="base">base</string>
+    <string name="shoulder">shoulder</string>
+    <string name="elbow">elbow</string>
+    <string name="wrist">wrist</string>
+    <string name="rotate">rotate</string>
+    <string name="gripper">gripper</string>
+    <string name="apply">apply</string>
+    <string name="_0">0</string>
+    <string name="states">states</string>
+    <string name="result">result</string>
+    <string name="reset">reset</string>
+    <string name="NotFound">not found</string>
+</resources>
