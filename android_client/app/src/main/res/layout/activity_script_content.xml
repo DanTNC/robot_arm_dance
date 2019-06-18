@@ -80,7 +80,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
         android:padding="6dp">
 
@@ -103,30 +103,30 @@
                 android:id="@+id/button_add_action"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:onClick="ToAddAction"
                 android:background="#1E90FF"
+                android:onClick="ToAddAction"
                 android:text="新增action" />
 
             <Button
                 android:id="@+id/button_edit_action"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:onClick="ToEditAction"
                 android:background="#A09A9A"
                 android:clickable="false"
                 android:enabled="false"
                 android:focusable="false"
+                android:onClick="ToEditAction"
                 android:text="編輯action" />
 
             <Button
                 android:id="@+id/button_delete_action"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:onClick="ToDelete"
                 android:background="#A09A9A"
                 android:clickable="false"
                 android:enabled="false"
                 android:focusable="false"
+                android:onClick="ToDelete"
                 android:text="刪除action" />
         </LinearLayout>
 

@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 String title = intent.getStringExtra("title");
                 String description = intent.getStringExtra("description");
                 mScriptList.add(new Script(title,description ));
+                mAdapter.notifyDataSetChanged();
             }
         }
 
