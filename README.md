@@ -9,7 +9,7 @@ dependencies: flask, flask-socketio, eventlet
 	Tinkerkit Braccio robot  
 
 	
-2. Contributions of each team member：
+2. Contributions of each team member：  
 	顏廷安：Web Server, Arduino Yún Setting, Intergration of the project  
 	謝璨安：RoomDatabase Built for robots' actions  
 	林詩軒：Android UI Design, Presentation  
