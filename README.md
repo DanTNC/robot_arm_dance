@@ -2,8 +2,10 @@
 
 an app that makes you able to control the robot arm and record actions as choreography!!
 dependencies: flask, flask-socketio, eventlet, gunicorn  
+  
 apk : app-debug.apk  
 ppt : Robot_Arm_Dance.pptx  
+  
 1. List of tools：  
 	Android Studio：RoomDatabase, Recycleview, AlertDialog, Intent, TextWatcher, OKHttp3  
 	Python：flask, flask-socketio, eventlet, gunicorn  
