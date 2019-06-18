@@ -21,6 +21,12 @@ def do_reset():
     emit("refresh", namespace="/", broadcast=True)
     return jsonify(rad.reset())
 
+@app.route('/action/clear', methods=["GET"])
+def do_clear():
+    rad.clear()
+    emit("refresh", namespace="/", broadcast=True)
+    return jsonify(rad.probe())
+
 @app.route('/action/<action>/<param>', methods=["GET"])
 def do_action(action, param):
     if rad.action(action, param):

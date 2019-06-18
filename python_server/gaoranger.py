@@ -82,6 +82,11 @@ class RAD():
         self.init_states()
         return self.states
         
+    def clear(self):
+        self.init_states()
+        self.actions = []
+        self.choreography = []
+        
     def set_states(self, angles):
         for i, angle in enumerate(angles):
             angle = int(angle)
