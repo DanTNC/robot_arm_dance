@@ -94,7 +94,8 @@
             android:layout_marginLeft="10dp"
             android:background="#A09A9A"
             android:onClick="AddScript"
-            android:text="@string/button_cancel_text" />
+            android:text="@string/button_cancel_text"
+            android:textColor="@color/cardview_light_background" />
     </RelativeLayout>
 
 </LinearLayout>

@@ -68,6 +68,7 @@ public class ScriptAddActivity extends AppCompatActivity{
                     mConfirm.setEnabled(true);
                     mConfirm.setFocusable(true);
                     mConfirm.setClickable(true);
+                    mConfirm.setTextColor(getResources().getColor(R.color.ItemColor));
                     mConfirm.setBackgroundColor(Color.parseColor("#00ff7f"));
                 }
             }

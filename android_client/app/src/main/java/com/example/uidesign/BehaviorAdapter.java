@@ -13,7 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class BehaviorAdapter extends
-        RecyclerView.Adapter<BehaviorAdapter.BahaviorViewHolder> implements View.OnClickListener{
+        RecyclerView.Adapter<BehaviorAdapter.BehaviorViewHolder> implements View.OnClickListener{
     private final LinkedList<Behavior> mBehaviorList;
     private LayoutInflater mInflater;
     private Context mContext;
@@ -39,18 +39,18 @@ public class BehaviorAdapter extends
     }
     @NonNull
     @Override
-    public BahaviorViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public BehaviorViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View mItemView = mInflater.inflate(R.layout.action_item,
                 parent, false);
         mItemView.setOnClickListener(this);
-        return new BahaviorViewHolder(mItemView, this);
+        return new BehaviorViewHolder(mItemView, this);
     }
-    class BahaviorViewHolder extends RecyclerView.ViewHolder{
+    class BehaviorViewHolder extends RecyclerView.ViewHolder{
         public final TextView ActionView;
         public final TextView ValueView;
         final BehaviorAdapter mAdapter;
 
-        public BahaviorViewHolder(View itemView, BehaviorAdapter adapter) {
+        public BehaviorViewHolder(View itemView, BehaviorAdapter adapter) {
             super(itemView);
             ActionView = itemView.findViewById(R.id.action_name);
             ValueView = itemView.findViewById(R.id.action_value);
@@ -61,7 +61,7 @@ public class BehaviorAdapter extends
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final BahaviorViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final BehaviorViewHolder holder, final int position) {
         Behavior element = mBehaviorList.get(position);
         holder.ActionView.setText(element.getAction());
         holder.ValueView.setText(String.valueOf(element.getValue()));
@@ -69,29 +69,6 @@ public class BehaviorAdapter extends
         holder.itemView.setTag(position);
 
         viewList.add(position, holder.itemView);
-        /*
-        if(isClicks.get(position)){
-            holder.ActionView.setTextColor(Color.parseColor("#ff7f50"));
-            holder.ValueView.setTextColor(Color.parseColor("#ff7f50"));
-        }else{
-            holder.ActionView.setTextColor(Color.parseColor("#000000"));
-            holder.ValueView.setTextColor(Color.parseColor("#000000"));
-        }
-
-        if (mOnItemClickListener != null) {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    for(int i = 0; i <isClicks.size();i++){
-                        isClicks.set(i,false);
-                    }
-                    isClicks.set(position,true);
-                    notifyDataSetChanged();
-                    mOnItemClickListener.onItemClick(holder.itemView,position);
-                }
-            });
-        }
-*/
     }
     @Override
     public void onClick(View v) {
@@ -109,6 +86,9 @@ public class BehaviorAdapter extends
     public void removeItem(int position){
         mBehaviorList.remove(position);
         notifyItemRemoved(position);
+        if(position != getItemCount()){
+            notifyItemRangeChanged(position , getItemCount() - position) ;
+        }
     }
 
 }

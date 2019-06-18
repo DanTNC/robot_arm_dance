@@ -7,7 +7,8 @@
     android:gravity="center_vertical"
     android:orientation="vertical"
     android:background="@color/ItemColor"
-    android:padding="6dp">
+    android:padding="6dp"
+    android:focusableInTouchMode="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,19 +30,10 @@
             android:layout_width="245dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:inputType="none"
-            android:editable="false"
-            android:focusable="false"
-            android:clickable="false"
+            android:inputType="text"
             android:ems="10"
             android:text="" />
 
-        <ImageButton
-            android:id="@+id/edit_title_button"
-            android:layout_width="20dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/ic_edit_button" />
     </LinearLayout>
 
     <LinearLayout
@@ -64,18 +56,10 @@
             android:layout_width="245dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:editable="false"
-            android:focusable="false"
-            android:clickable="false"
             android:ems="10"
-            android:inputType="none"
+            android:inputType="text"
             android:text="" />
-        <ImageButton
-            android:id="@+id/edit_title_description"
-            android:layout_width="20dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/ic_edit_button" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -105,7 +89,8 @@
                 android:layout_height="50dp"
                 android:background="#1E90FF"
                 android:onClick="ToAddAction"
-                android:text="新增action" />
+                android:text="新增動作"
+                android:textColor="@color/cardview_light_background"/>
 
             <Button
                 android:id="@+id/button_edit_action"
@@ -116,7 +101,8 @@
                 android:enabled="false"
                 android:focusable="false"
                 android:onClick="ToEditAction"
-                android:text="編輯action" />
+                android:text="編輯動作"
+                android:textColor="@color/cardview_light_background" />
 
             <Button
                 android:id="@+id/button_delete_action"
@@ -127,7 +113,26 @@
                 android:enabled="false"
                 android:focusable="false"
                 android:onClick="ToDelete"
-                android:text="刪除action" />
+                android:text="刪除動作"
+                android:textColor="@color/cardview_light_background" />
+
+            <Button
+                android:id="@+id/button_play"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="100dp"
+                android:background="#FF9800"
+                android:onClick="ToPlay"
+                android:text="播放腳本"
+                android:textColor="@color/cardview_light_background" />
+
+            <ToggleButton
+                android:id="@+id/button_toggle_test"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textOn="機器手臂"
+                android:textOff="測試伺服器"/>
+
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView

@@ -4,7 +4,7 @@ public class Behavior {
     private String action;
     private int value;
 
-    public Behavior(String action,int value){
+    public Behavior(String action, int value){
         this.action = action;
         this.value = value;
 

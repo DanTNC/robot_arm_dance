@@ -9,10 +9,16 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+
 @Database(entities = {Action.class}, version = 1, exportSchema = false)
-public abstract class ActionRoomDatabase extends RoomDatabase{
+public abstract class ActionRoomDatabase extends RoomDatabase {
     public abstract ActionDao actionDao();
+
     private static ActionRoomDatabase INSTANCE;
+
     public static ActionRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (ActionRoomDatabase.class) {
@@ -31,11 +37,12 @@ public abstract class ActionRoomDatabase extends RoomDatabase{
         }
         return INSTANCE;
     }
+
     private static RoomDatabase.Callback sRoomDatabaseCallback =
-            new RoomDatabase.Callback(){
+            new RoomDatabase.Callback() {
 
                 @Override
-                public void onOpen (@NonNull SupportSQLiteDatabase db){
+                public void onOpen(@NonNull SupportSQLiteDatabase db) {
                     super.onOpen(db);
                     new PopulateDbAsync(INSTANCE).execute();
                 }
@@ -47,18 +54,33 @@ public abstract class ActionRoomDatabase extends RoomDatabase{
 
         private final ActionDao mDao;
 
+        private static String title = "夾到對面";
+        private static String description = "手臂往下夾物體並夾到對面";
+        private static String[] motors = {"Wrist", "Gripper", "Shoulder", "Gripper", "Wrist", "Elbow", "Gripper"};
+        private static int[] steps = {180, -50, 50, 50, -170, -170, -50};
+
         PopulateDbAsync(ActionRoomDatabase db) {
             mDao = db.actionDao();
         }
 
         @Override
         protected Void doInBackground(final Void... params) {
-            // If we have no words, then create the initial list of words
-
+            if (mDao.getAnyAction().length < 1) {
+                Gson gson = new Gson();
+                ArrayList<Behavior> action_list = new ArrayList<>();
+                for (int i = 0; i < motors.length; i++) {
+                    Behavior behavior = new Behavior(motors[i], steps[i]);
+                    action_list.add(behavior);
+                }
+                String actions = gson.toJson(action_list);
+                Action action = new Action(title, description, actions);
+                mDao.insert(action);
+            }
             return null;
         }
     }
-    public static void deleteInstance(){
-        INSTANCE=null;
+
+    public static void deleteInstance() {
+        INSTANCE = null;
     }
 }

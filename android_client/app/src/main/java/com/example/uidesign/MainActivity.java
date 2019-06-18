@@ -1,7 +1,10 @@
 package com.example.uidesign;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,11 +14,12 @@ import android.view.View;
 import android.view.Menu;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private final LinkedList<Script> mScriptList = new LinkedList<>();
     private RecyclerView mRecyclerView;
-    private ScriptAdapter mAdapter;
+    private ActionListAdapter mAdapter;
+    private ActionViewModel mActionViewModel;
     public static final int TEXT_REQUEST = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +27,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        mActionViewModel = ViewModelProviders.of(this).get(ActionViewModel.class);
+        mActionViewModel.getAllActions().observe(this, new Observer<List<Action>>() {
+            @Override
+            public void onChanged(@Nullable List<Action> actions) {
+                mAdapter.setActions(actions);
+            }
+        });
 
         //Floating buuton is used for adding new scripts.
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -35,14 +47,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Put initial data into the word list.
-        for (int i = 0; i < 3; i++) {
-            mScriptList.add(new Script("Sample: " + i,"This is a sample description" ));
-        }
+//        for (int i = 0; i < 3; i++) {
+//            mActions.add(new Action("Sample " + i,"This is a sample description", ""));
+//        }
 
         // Get a handle to the RecyclerView.
         mRecyclerView = findViewById(R.id.recyclerview);
         // Create an adapter and supply the data to be displayed.
-        mAdapter = new ScriptAdapter(this, mScriptList);
+        mAdapter = new ActionListAdapter(this, mActionViewModel);
         // Connect the adapter with the RecyclerView.
         mRecyclerView.setAdapter(mAdapter);
         // Give the RecyclerView a default layout manager.
@@ -68,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 String title = intent.getStringExtra("title");
                 String description = intent.getStringExtra("description");
-                mScriptList.add(new Script(title,description ));
+                mActionViewModel.insert(new Action(title, description, ""));
                 mAdapter.notifyDataSetChanged();
             }
         }

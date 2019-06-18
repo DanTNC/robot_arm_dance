@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="6dp"
+        android:layout_margin="6dp"
         android:text="Base" />
 
     <Button
@@ -21,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="6dp"
+        android:layout_margin="6dp"
         android:text="Shoulder" />
 
     <Button
@@ -28,6 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="6dp"
+        android:layout_margin="6dp"
         android:text="Elbow" />
 
     <Button
@@ -35,6 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="6dp"
+        android:layout_margin="6dp"
         android:text="Wrist" />
 
     <Button
@@ -42,6 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="6dp"
+        android:layout_margin="6dp"
         android:text="Rotate" />
 
     <Button
@@ -49,6 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="6dp"
+        android:layout_margin="6dp"
         android:text="Gripper" />
 
 
@@ -56,16 +62,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="100dp"
         android:padding="6dp">
 
 
         <TextView
             android:id="@+id/lowValue"
-            android:layout_width="30dp"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:text="0" />
+            android:text="0"
+            android:textSize="20sp"/>
 
 
         <SeekBar
@@ -78,10 +84,11 @@
 
         <TextView
             android:id="@+id/highValue"
-            android:layout_width="30dp"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="100" />
+            android:text="100"
+            android:textSize="20sp" />
 
 
     </RelativeLayout>
@@ -101,6 +108,7 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="80dp"
             android:background="@drawable/round_button"
+            android:backgroundTint="@color/reduce"
             app:srcCompat="@drawable/ic_minus_for_fab" />
 
         <TextView
@@ -110,7 +118,8 @@
             android:layout_marginLeft="120dp"
             android:layout_marginRight="120dp"
             android:gravity="center"
-            android:text="50" />
+            android:text="50"
+            android:textSize="20sp" />
 
         <ImageButton
             android:id="@+id/AddValueButton"
@@ -119,12 +128,34 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="80dp"
             android:background="@drawable/round_button"
+            android:backgroundTint="@color/add"
             android:onClick="AddValue"
             app:srcCompat="@drawable/ic_add_for_fab" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="MinusValue"
+        android:orientation="horizontal"
+        android:padding="6dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/button_test"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/round_button2"
+            android:gravity="center"
+            android:onClick="testAction"
+            android:text="測試"
+            android:textColor="@color/cardview_light_background"
+            android:textFontWeight="bold"></Button>>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
         android:padding="6dp">
 
@@ -132,8 +163,7 @@
             android:id="@+id/strut2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_centerHorizontal="true"
-             />
+            android:layout_centerHorizontal="true" />
 
         <Button
             android:id="@+id/button_action_confirm"
@@ -145,7 +175,9 @@
             android:layout_marginRight="10dp"
             android:background="#00ff7f"
             android:onClick="AddAction"
-            android:text="@string/button_confirm_text" />
+            android:text="@string/button_confirm_text"
+            android:textColor="@color/cardview_light_background"
+            android:textFontWeight="bold" />
 
         <Button
             android:id="@+id/button_action_cancel"
@@ -157,7 +189,9 @@
             android:layout_marginLeft="10dp"
             android:background="#A09A9A"
             android:onClick="AddAction"
-            android:text="@string/button_cancel_text" />
+            android:text="@string/button_cancel_text"
+            android:textColor="@color/cardview_light_background"
+            android:textFontWeight="bold" />
 
     </RelativeLayout>
 
