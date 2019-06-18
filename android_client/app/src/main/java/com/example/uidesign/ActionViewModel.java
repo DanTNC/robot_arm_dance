@@ -1,4 +1,4 @@
-package com.example.uidesgin;
+package com.example.uidesign;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;

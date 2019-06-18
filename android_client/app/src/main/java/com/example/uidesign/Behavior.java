@@ -1,4 +1,4 @@
-package com.example.uidesgin;
+package com.example.uidesign;
 
 public class Behavior {
     private String action;

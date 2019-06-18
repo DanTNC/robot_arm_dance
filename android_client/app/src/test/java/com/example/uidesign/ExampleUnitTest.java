@@ -1,4 +1,4 @@
-package com.example.uidesgin;
+package com.example.uidesign;
 
 import org.junit.Test;
 

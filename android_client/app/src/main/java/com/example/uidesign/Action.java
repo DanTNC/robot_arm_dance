@@ -1,4 +1,4 @@
-package com.example.uidesgin;
+package com.example.uidesign;
 
 import android.support.annotation.NonNull;
 import android.arch.persistence.room.ColumnInfo;

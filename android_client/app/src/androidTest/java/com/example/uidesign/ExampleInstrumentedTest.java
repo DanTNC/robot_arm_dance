@@ -1,4 +1,4 @@
-package com.example.uidesgin;
+package com.example.uidesign;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

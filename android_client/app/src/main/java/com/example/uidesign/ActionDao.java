@@ -1,4 +1,4 @@
-package com.example.uidesgin;
+package com.example.uidesign;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;

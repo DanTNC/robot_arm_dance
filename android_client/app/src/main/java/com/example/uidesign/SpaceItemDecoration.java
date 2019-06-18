@@ -1,4 +1,4 @@
-package com.example.uidesgin;
+package com.example.uidesign;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;

@@ -1,11 +1,8 @@
-package com.example.uidesgin;
+package com.example.uidesign;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.drm.DrmStore;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,13 +10,11 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.uidesgin.BehaviorAdapter.OnItemClickListener;
+import com.example.uidesign.BehaviorAdapter.OnItemClickListener;
 
 import java.util.LinkedList;
 
