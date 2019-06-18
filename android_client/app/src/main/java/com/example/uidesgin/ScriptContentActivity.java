@@ -27,7 +27,8 @@ public class ScriptContentActivity extends AppCompatActivity {
     private final LinkedList<Behavior> mBehaviorList = new LinkedList<>();
     private RecyclerView mRecyclerView;
     private BehaviorAdapter mAdapter;
-    public static final int TEXT_REQUEST = 1;
+    public static final int NEW_REQUEST = 1;
+    public static final int EDIT_REQUEST = 1;
 
     private int current_pos;
 
@@ -99,13 +100,13 @@ public class ScriptContentActivity extends AppCompatActivity {
         //initial setting
         intent.putExtra("action","Base");
         intent.putExtra("value",0);
-        startActivityForResult(intent, TEXT_REQUEST);
+        startActivityForResult(intent, NEW_REQUEST);
     }
     public void ToEditAction(View view) {
         Intent intent = new Intent(ScriptContentActivity.this,ActionActivity.class);
         intent.putExtra("action",mBehaviorList.get(current_pos).getAction());
         intent.putExtra("value",mBehaviorList.get(current_pos).getValue());
-        startActivityForResult(intent, TEXT_REQUEST);
+        startActivityForResult(intent, EDIT_REQUEST);
     }
     public void ToDelete(View view) {
         AlertDialog.Builder DeScript = new AlertDialog.Builder(ScriptContentActivity.this);
@@ -138,11 +139,12 @@ public class ScriptContentActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode,
                                  int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
-        if(requestCode == TEXT_REQUEST){
+        if(requestCode == NEW_REQUEST){
             if (resultCode == RESULT_OK) {
                 String action = intent.getStringExtra("action");
                 int value = intent.getIntExtra("value",0);
                 mBehaviorList.add(new Behavior(action,value));
+                mAdapter.notifyDataSetChanged();
             }
         }
     }

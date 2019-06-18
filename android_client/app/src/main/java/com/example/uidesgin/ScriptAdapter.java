@@ -99,7 +99,7 @@ public class ScriptAdapter extends
         return mScriptList.size();
     }
 
-    public void removeItem(int position){
+    private void removeItem(int position){
         mScriptList.remove(position);
         notifyItemRemoved(position);
     }
