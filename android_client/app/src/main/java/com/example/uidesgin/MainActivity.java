@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private final LinkedList<Script> mScriptList = new LinkedList<>();
     private RecyclerView mRecyclerView;
     private ScriptAdapter mAdapter;
+    public static final int TEXT_REQUEST = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,14 +26,13 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Floating buuton is used for adding new scripts.
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
                 Intent intent = new Intent(MainActivity.this,ScriptAddActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, TEXT_REQUEST);
             }
         });
 
@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
         // Give the RecyclerView a default layout manager.
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //Set the margin of each items in the recyclerview.
         mRecyclerView.addItemDecoration(new SpaceItemDecoration(15));
 
     }
@@ -60,19 +61,19 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    //Get the response from ScriptAddActivity class
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    public void onActivityResult(int requestCode,
+                                 int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if(requestCode == TEXT_REQUEST){
+            if (resultCode == RESULT_OK) {
+                String title = intent.getStringExtra("title");
+                String description = intent.getStringExtra("description");
+                mScriptList.add(new Script(title,description ));
+            }
         }
 
-        return super.onOptionsItemSelected(item);
     }
 
 }

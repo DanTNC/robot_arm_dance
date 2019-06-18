@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ItemColor"
     android:orientation="vertical"
     android:padding="6dp">
 
@@ -27,9 +27,8 @@
             android:layout_width="245dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:ems="10"
             android:hint="Title X"
-            android:inputType="none" />
+            android:inputType="text" />
 
     </LinearLayout>
 
@@ -53,30 +52,49 @@
             android:layout_width="245dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:ems="10"
             android:hint="Description X"
-            android:inputType="none" />
+            android:inputType="text" />
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:padding="6dp">
+
+        <View
+            android:id="@+id/strut"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true" />
 
         <Button
             android:id="@+id/confirm_build_script_button"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="確定" />
+            android:layout_alignRight="@id/strut"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="10dp"
+            android:background="#A09A9A"
+            android:clickable="false"
+            android:enabled="false"
+            android:focusable="false"
+            android:onClick="AddScript"
+            android:text="@string/button_confirm_text" />
 
         <Button
             android:id="@+id/cancel_build_script_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-            android:text="取消" />
-    </LinearLayout>
+            android:layout_alignLeft="@id/strut"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:background="#A09A9A"
+            android:onClick="AddScript"
+            android:text="@string/button_cancel_text" />
+    </RelativeLayout>
 
 </LinearLayout>

@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">UIDesgin</string>
     <string name="action_settings">Settings</string>
+    <string name="button_confirm_text">確定</string>
+    <string name="button_cancel_text">取消</string>
+    <string-array name="action">
+        <item> Base</item>
+        <item> Shoulder  </item>
+        <item> Elbow </item>
+        <item> Wrist </item>
+        <item> Rotate </item>
+        <item> Gripper </item>
+    </string-array>
 </resources>
