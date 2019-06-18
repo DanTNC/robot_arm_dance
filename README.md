@@ -7,7 +7,7 @@ apk : app-debug.apk
 ppt : Robot_Arm_Dance.pptx  
   
 1. List of tools：  
-	Android Studio：RoomDatabase, Recycleview, AlertDialog, Intent, TextWatcher, OKHttp3  
+	Android Studio：RoomDatabase, Recycleview, AlertDialog, Intent, TextWatcher, Gson, OKHttp3  
 	Python：flask, flask-socketio, eventlet, gunicorn  
 	Arduino Yún  
 	Tinkerkit Braccio robot  
