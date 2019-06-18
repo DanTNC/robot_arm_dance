@@ -1,10 +1,10 @@
 # robot_arm_dance
 
 an app that makes you able to control the robot arm and record actions as choreography!!
-dependencies: flask, flask-socketio, eventlet
+dependencies: flask, flask-socketio, eventlet, gunicorn  
 1. List of tools：  
 	Android Studio：RoomDatabase, Recycleview, AlertDialog, Intent, TextWatcher, OKHttp3  
-	Python：flask, flask-socketio, eventlet  
+	Python：flask, flask-socketio, eventlet, gunicorn  
 	Arduino Yún  
 	Tinkerkit Braccio robot  
 
