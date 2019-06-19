@@ -6,7 +6,12 @@ dependencies: flask, flask-socketio, eventlet, gunicorn
 apk : app-debug.apk  
 ppt : Robot_Arm_Dance.pptx  
 test server: smilegaoranger.herokuapp.com
-  
+
+
+
+[![demo video]()](https://drive.google.com/file/d/1sX_xoj9OogSC16i4_TsGlz9mNuEqUH9w/view)
+
+
 1. List of tools：  
 	Android Studio：RoomDatabase, Recycleview, AlertDialog, Intent, TextWatcher, Gson, OKHttp3  
 	Python：flask, flask-socketio, eventlet, gunicorn  
