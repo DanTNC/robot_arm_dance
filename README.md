@@ -9,7 +9,7 @@ test server: smilegaoranger.herokuapp.com
 
 
 
-[![demo video]()](https://drive.google.com/file/d/1sX_xoj9OogSC16i4_TsGlz9mNuEqUH9w/view)
+[![demo video]()](https://youtu.be/YS1Q-ZIOYTM)
 
 
 1. List of tools：  
