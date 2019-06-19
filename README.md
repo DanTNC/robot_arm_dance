@@ -9,7 +9,7 @@ test server: smilegaoranger.herokuapp.com
 
 
 
-[![demo video](demo video.gif)]
+![demo video](demo video.gif)
 
 
 1. List of tools：  
