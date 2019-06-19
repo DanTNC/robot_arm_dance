@@ -3,12 +3,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/ItemColor"
+    android:focusableInTouchMode="true"
     android:gravity="center_vertical"
     android:orientation="vertical"
-    android:background="@color/ItemColor"
-    android:padding="6dp"
-    android:focusableInTouchMode="true">
+    android:padding="6dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,8 +30,8 @@
             android:layout_width="245dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:inputType="text"
             android:ems="10"
+            android:inputType="text"
             android:text="" />
 
     </LinearLayout>
@@ -90,7 +90,7 @@
                 android:background="#1E90FF"
                 android:onClick="ToAddAction"
                 android:text="新增動作"
-                android:textColor="@color/cardview_light_background"/>
+                android:textColor="@color/cardview_light_background" />
 
             <Button
                 android:id="@+id/button_edit_action"
@@ -130,8 +130,8 @@
                 android:id="@+id/button_toggle_test"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textOn="機器手臂"
-                android:textOff="測試伺服器"/>
+                android:textOff="測試伺服器"
+                android:textOn="機器手臂" />
 
         </LinearLayout>
 

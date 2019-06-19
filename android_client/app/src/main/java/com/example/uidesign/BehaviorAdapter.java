@@ -91,4 +91,8 @@ public class BehaviorAdapter extends
         }
     }
 
+    public void focus(int pos){
+        getView(pos).callOnClick();
+    }
+
 }

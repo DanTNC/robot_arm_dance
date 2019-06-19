@@ -70,12 +70,8 @@ public class ActionActivity extends AppCompatActivity implements View.OnClickLis
             if(btn[i].getText().toString().equals(action)){
                 btn[i].setTextColor(Color.rgb(255, 255, 255));
                 btn[i].setBackgroundColor(Color.rgb(3, 106, 150));
-                valueBar.setMax(high_limit[i]-low_limit[i]);
-                if(i == 5) {
-                    valueBar.setProgress(value - low_limit[i] - 10);
-                }else{
-                    valueBar.setProgress(value - low_limit[i]);
-                }
+                valueBar.setMax(high_limit[i]);
+                valueBar.setProgress(value - low_limit[i]);
                 LowView.setText(String.valueOf(low_limit[i]));
                 HighView.setText(String.valueOf(high_limit[i]));
                 ValueView.setText(String.valueOf(value));
@@ -94,10 +90,7 @@ public class ActionActivity extends AppCompatActivity implements View.OnClickLis
             int count;
             @Override
             public void onStopTrackingTouch(SeekBar arg0) {
-                count = valueBar.getProgress();
-                if(index == 5){
-                    count += 10;
-                }
+                count = valueBar.getProgress() + low_limit[index];
                 ValueView.setText(String.valueOf(count));
                 value = count;
             }
@@ -164,7 +157,7 @@ public class ActionActivity extends AppCompatActivity implements View.OnClickLis
                     HighView.setText(String.valueOf(high_limit[1]));
                     ValueView.setText(String.valueOf(this.value));
                     valueBar.setMax(high_limit[1]-low_limit[1]);
-                    valueBar.setProgress(this.value-low_limit[1]);
+                    valueBar.setProgress(this.value - low_limit[1]);
                     this.index = 1;
                 }
                 break;
@@ -218,7 +211,7 @@ public class ActionActivity extends AppCompatActivity implements View.OnClickLis
                     HighView.setText(String.valueOf(high_limit[5]));
                     ValueView.setText(String.valueOf(this.value));
                     valueBar.setMax(high_limit[5] - low_limit[5]);
-                    valueBar.setProgress(this.value - low_limit[5] - 10);
+                    valueBar.setProgress(this.value - low_limit[5]);
                     this.index = 5;
                 }
                 break;
@@ -239,10 +232,7 @@ public class ActionActivity extends AppCompatActivity implements View.OnClickLis
         Intent replyIntent = new Intent();
         if(id == R.id.button_action_confirm){
             String action = btn_unfocus.getText().toString();
-            int value = valueBar.getProgress();
-            if(this.index == 5){
-                value += 10;
-            }
+            int value = valueBar.getProgress() + low_limit[index];;
             value -= states.get(action);
             replyIntent.putExtra("action", action);
             replyIntent.putExtra("value", value);
@@ -258,22 +248,14 @@ public class ActionActivity extends AppCompatActivity implements View.OnClickLis
         if(this.value < high_limit[index]){
             this.value = this.value + 1;
             ValueView.setText(String.valueOf(this.value));
-            if(this.index == 5) {
-                valueBar.setProgress(this.value - 10);
-            }else{
-                valueBar.setProgress(this.value);
-            }
+            valueBar.setProgress(this.value - low_limit[this.index]);
         }
     }
     public void MinusValue(View view){
         if(this.value > low_limit[index]){
             this.value = this.value - 1;
             ValueView.setText(String.valueOf(this.value));
-            if(this.index == 5) {
-                valueBar.setProgress(this.value - 10);
-            }else{
-                valueBar.setProgress(this.value);
-            }
+            valueBar.setProgress(this.value - low_limit[this.index]);
         }
     }
 }

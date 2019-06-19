@@ -292,6 +292,7 @@ public class ScriptContentActivity extends AppCompatActivity {
                 int pos = intent.getIntExtra("pos", 0);
 //                mBehaviorList.add(new Behavior(action,value));
                 mBehaviorList.set(pos, new Behavior(action, value));
+                mAdapter.focus(pos);
                 mAdapter.notifyDataSetChanged();
                 updateDatabase();
             }
