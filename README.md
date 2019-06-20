@@ -9,7 +9,8 @@ test server: smilegaoranger.herokuapp.com
 
 
 
-![demo video](https://github.com/DanTNC/robot_arm_dance/blob/master/demo%20video.gif)
+![demo video](https://github.com/DanTNC/robot_arm_dance/blob/master/demovideoUI.gif)
+![demo video](https://github.com/DanTNC/robot_arm_dance/blob/master/demovideoARM.gif)
 
 
 1. List of tools：  
